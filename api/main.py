@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.routes import auth, users,category,product,address,cart,review,order 
+from api.routes import auth, users,category,product,address,cart,review,order,dashboard
 from api.database.connection import engine
 from api.database.base import Base
 
@@ -33,3 +33,5 @@ app.include_router(order.router, prefix="/order", tags=["Order"])
 
 # Include produt-related routes
 app.include_router(review.router, prefix="/review", tags=["Review"])
+
+app.include_router(dashboard.router, prefix="/dashboard", tags=["Dashboard"])

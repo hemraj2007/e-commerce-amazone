@@ -27,7 +27,15 @@ class UserResponse(BaseModel):
     class Config:
         from_attributes = True
 
+# ✅ Corrected: Password update schema (should be separate)
+class UserPasswordUpdate(BaseModel):
+    new_password: str
+    confirm_password: str
+
+    class Config:
+        from_attributes = True
+
 # User login schema
 class UserLogin(BaseModel):
     email: EmailStr
-    password: str
+    password: str   

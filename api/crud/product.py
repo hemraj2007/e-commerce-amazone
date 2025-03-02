@@ -15,9 +15,11 @@ def create_product(db: Session,  product: ProductCreate):
         net_price = product.net_price,
         quantity_in_stock = product.quantity_in_stock,
         image = product.image,
+        status = product.status,
         created_at = product.created_at,
-        updated_at = product.updated_at
-
+        updated_at = product.updated_at,
+       
+        
 
     )
     db.add(db_product)  # Add the user to the database session

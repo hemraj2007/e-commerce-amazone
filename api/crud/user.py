@@ -2,6 +2,8 @@ from sqlalchemy.orm import Session
 from api.database.models.user import User
 from api.database.schemas.user import UserCreate
 from api.security import hash_password
+from fastapi import HTTPException
+
 
 # Function to create a new user in the database
 def create_user(db: Session, user: UserCreate):
@@ -49,3 +51,14 @@ def get_user_by_id(db: Session, user_id: int):
     :return: User object if found, else None.
     """
     return db.query(User).filter(User.id == user_id).first()
+
+
+
+def update_user_password(db: Session, user: User, new_password: str):
+    """
+    Update user's password securely.
+    """
+    user.password = hash_password(new_password)  # ✅ Hashing the new password before saving
+    db.commit()
+    db.refresh(user)
+    return user  # ✅ Returning updated user object

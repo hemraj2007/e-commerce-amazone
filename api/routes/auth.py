@@ -15,12 +15,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 @router.post("/register", response_model=UserResponse)
 def register(user: UserCreate, db: Session = Depends(get_db)):
-    """
-    Endpoint to register a new user.
-    
-    - Checks if the email is already registered.
-    - If not, creates a new user in the database.
-    """
+   
     existing_user = get_user_by_email(db, user.email)
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
