@@ -17,7 +17,7 @@ def get_profile(current_user: UserResponse = Depends(get_current_user)):
     return current_user
 
 
-@router.put("/update-password")
+@router.put("/update_password")
 def update_password(
     email:str,
     password_data: UserPasswordUpdate, 
